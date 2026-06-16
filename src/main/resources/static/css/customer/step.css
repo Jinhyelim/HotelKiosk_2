@@ -1,0 +1,91 @@
+/* 스텝 인디케이터 */
+.step-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2cqw 4cqw 0;
+    gap: 0;
+    flex-shrink: 0;
+}
+
+.step-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1cqw;
+    position: relative;
+    flex: 1;
+}
+
+/* 원형 아이콘 */
+.step-circle {
+    width: 7cqw;
+    height: 7cqw;
+    border-radius: 50%;
+    border: 0.4cqw solid #d0d0d0;
+    background: #fff;
+    color: #bbb;
+    font-size: 2.6cqw;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* 연결선 */
+.step-item::before {
+    content: '';
+    position: absolute;
+    top: 3.5cqw;
+    left: calc(-50% + 3.5cqw);
+    right: calc(50% + 3.5cqw);
+    height: 0.3cqw;
+    background: #d0d0d0;
+    z-index: 0;
+    transition: background 0.3s ease;
+}
+
+.step-item:first-child::before {
+    display: none;
+}
+
+/* 완료 상태 - 번호 그대로, 테두리/색상만 변경 */
+.step-item.done .step-circle {
+    background: #fff;
+    border-color: var(--green, #1e4d3a);
+    color: var(--green, #1e4d3a);
+}
+
+.step-item.done::before {
+    background: var(--green, #1e4d3a);
+}
+
+/* 활성 상태 */
+.step-item.active .step-circle {
+    background: var(--green, #1e4d3a);
+    border-color: var(--green, #1e4d3a);
+    color: #fff;
+}
+
+/* 라벨 */
+.step-label {
+    font-size: 2.2cqw;
+    color: #bbb;
+    font-weight: 400;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.step-item.done .step-label {
+    color: var(--green, #1e4d3a);
+    font-weight: 500;
+}
+
+.step-item.active .step-label {
+    color: var(--green, #1e4d3a);
+    font-weight: 700;
+}
