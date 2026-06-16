@@ -461,142 +461,106 @@ sequenceDiagram
 ```mermaid
 erDiagram
     admin {
-        VARCHAR admin_id PK
-        VARCHAR password
-        VARCHAR admin_name
-        VARCHAR admin_email
-        ENUM admin_grade
-        ENUM statement
-        INT fail_count
-        DATETIME last_login
-        VARCHAR last_login_ip
+        string admin_id PK
+        string password
+        string admin_grade
+        string statement
+        int fail_count
     }
-
     members {
-        BIGINT member_no PK
-        VARCHAR member_name
-        VARCHAR member_phone
-        DATE member_birth
-        DATE reg_date
-        INT reservation_count
-        INT member_point
+        bigint member_no PK
+        string member_name
+        string member_phone
+        date member_birth
+        int member_point
     }
-
     members_point {
-        BIGINT point_id PK
-        BIGINT member_no FK
-        BIGINT idx FK
-        DATETIME change_date
-        INT earning
-        INT using_point
+        bigint point_id PK
+        bigint member_no FK
+        bigint idx FK
+        int earning
+        int using_point
     }
-
     room_master {
-        INT room_no PK
-        VARCHAR room_name
-        VARCHAR room_type
-        VARCHAR room_view
-        INT room_floor
-        INT base_price
-        INT max_people
-        VARCHAR bed_type
-        DOUBLE area
-        DOUBLE rating
-        ENUM room_status
+        int room_no PK
+        string room_name
+        string room_type
+        string room_view
+        int base_price
+        int max_people
+        string room_status
     }
-
     room_status {
-        INT room_no PK_FK
-        ENUM current_status
-        DATETIME updated_at
+        int room_no PK
+        string current_status
+        datetime updated_at
     }
-
     option_master {
-        BIGINT option_id PK
-        VARCHAR option_name
-        ENUM option_category
-        ENUM option_target
-        INT option_price
+        bigint option_id PK
+        string option_name
+        string option_category
+        string option_target
+        int option_price
     }
-
     reservations {
-        BIGINT idx PK
-        VARCHAR reservation_id
-        INT room_no FK
-        BIGINT member_no FK
-        ENUM status
-        DATE checkin_date
-        DATE checkout_date
-        DATETIME check_in_at
-        DATETIME check_out_at
-        INT reg_people
-        VARCHAR parking_num
-        TINYINT add_option
-        ENUM pay_status
-        ENUM sms_status
+        bigint idx PK
+        string reservation_id
+        int room_no FK
+        bigint member_no FK
+        string status
+        date checkin_date
+        date checkout_date
+        int reg_people
+        string pay_status
     }
-
     options_record {
-        BIGINT option_record_id PK
-        BIGINT idx FK
-        BIGINT option_id FK
-        INT quantity
-        INT option_charge
+        bigint option_record_id PK
+        bigint idx FK
+        bigint option_id FK
+        int quantity
+        int option_charge
     }
-
     payments {
-        BIGINT payment_id PK
-        BIGINT idx FK
-        ENUM pay_method
-        VARCHAR approval_no
-        INT room_price
-        INT point_amount
-        INT option_charge
-        INT total_charge
-        ENUM pay_status
-        ENUM sms_status
-        VARCHAR toss_key
+        bigint payment_id PK
+        bigint idx FK
+        string pay_method
+        int room_price
+        int point_amount
+        int total_charge
+        string pay_status
+        string toss_key
     }
-
     toss_log {
-        BIGINT lno PK
-        BIGINT payment_id FK
-        VARCHAR toss_key
-        VARCHAR result_code
-        TEXT log_content
+        bigint lno PK
+        bigint payment_id FK
+        string result_code
+        string log_content
     }
-
     pricing_policy {
-        BIGINT policy_id PK
-        VARCHAR policy_name
-        ENUM repeat_type
-        VARCHAR repeat_value
-        DATE start_date
-        DATE end_date
-        DOUBLE discount_rate
+        bigint policy_id PK
+        string policy_name
+        string repeat_type
+        date start_date
+        date end_date
+        float discount_rate
     }
-
     pricing_policy_room {
-        BIGINT policy_id PK_FK
-        INT room_no PK_FK
-        INT room_price
+        bigint policy_id FK
+        int room_no FK
+        int room_price
     }
-
     stocks {
-        BIGINT stock_id PK
-        VARCHAR stock_name
-        INT stock_count
-        INT min_stock
-        ENUM stock_status
+        bigint stock_id PK
+        string stock_name
+        int stock_count
+        int min_stock
+        string stock_status
     }
-
     inform_board {
-        BIGINT inform_id PK
-        VARCHAR title
-        TEXT content
-        VARCHAR writer
-        DATE reg_date
-        DATE mod_date
+        bigint inform_id PK
+        string title
+        string content
+        date reg_date
     }
 
     members ||--o{ members_point : "포인트 내역"
